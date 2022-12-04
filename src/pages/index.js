@@ -5,6 +5,8 @@ import { StaticImage } from "gatsby-plugin-image"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import * as styles from "../components/index.module.css"
+import Comments  from "../components/comments"
+import useComments from '../hooks/use-comments';
 
 const links = [
   {
@@ -69,8 +71,12 @@ const moreLinks = [
 
 const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=default-starter`
 
-const IndexPage = () => (
+const IndexPage = () => {
+  const { comments } = useComments();
+  return(
+
   <Layout>
+    
     <div className={styles.textCenter}>
       <StaticImage
         src="../images/example.png"
@@ -83,7 +89,9 @@ const IndexPage = () => (
       />
       <h1>
         Welcome to <b>Gatsby!</b>
+        <Comments/>
       </h1>
+      
       <p className={styles.intro}>
         <b>Example pages:</b>{" "}
         {samplePageLinks.map((link, i) => (
@@ -116,7 +124,7 @@ const IndexPage = () => (
       </React.Fragment>
     ))}
   </Layout>
-)
+)}
 
 /**
  * Head export to define metadata for the page
